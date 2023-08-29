@@ -19,7 +19,7 @@ const generateWeatherIcon = (weatherCode: number) => {
 };
 
 const Prefecture = async ({ params }: { params: { prefecture: string } }) => {
-  const response = await fetch(`http://localhost:3000/api/${params.prefecture}`);
+  const response = await fetch(`https://weather-eta-five.vercel.app/api/${params.prefecture}`);
   if (!response.ok) throw new Error('Failed to fetch data');
   const data = await response.json();
   return (
