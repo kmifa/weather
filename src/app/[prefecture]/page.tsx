@@ -1,4 +1,5 @@
 import Chart from './chart';
+import SetStorage from './setStorage';
 const generateWeatherIcon = (weatherCode: number) => {
   // https://www.jodc.go.jp/data_format/weather-code_j.html
   const iconText = (() => {
@@ -19,7 +20,7 @@ const generateWeatherIcon = (weatherCode: number) => {
 };
 
 const Prefecture = async ({ params }: { params: { prefecture: string } }) => {
-  const response = await fetch(`${process.env.API_URL}/api/${params.prefecture}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${params.prefecture}`);
   if (!response.ok) throw new Error('Failed to fetch data');
   const data = await response.json();
   return (
@@ -31,6 +32,7 @@ const Prefecture = async ({ params }: { params: { prefecture: string } }) => {
           {generateWeatherIcon(data.current_weather.weathercode)}
           <p className="">{data.current_weather.temperature}℃</p>
         </div>
+        {/* <SetStorage params={params} /> */}
       </div>
       <Chart times={data} />
     </>
